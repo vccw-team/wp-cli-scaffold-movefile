@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/vccw-team/wp-cli-scaffold-movefile.svg?branch=master)](https://travis-ci.org/vccw-team/wp-cli-scaffold-movefile)
 
-Get informations as YAML format from WordPress for [Wordmove's Movefile](http://welaika.github.io/wordmove/).
+Get informations as YAML format for [Wordmove's Movefile](http://welaika.github.io/wordmove/) from WordPress.
 
 ```
 $ wp scaffold movefile

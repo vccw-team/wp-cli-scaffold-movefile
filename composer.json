@@ -1,6 +1,6 @@
 {
     "name": "vccw/wp-cli-scaffold-movefile",
-    "description": "Get informations as YAML format from WordPress for Wordmove's Movefile",
+    "description": "Get informations as YAML format for Wordmove's Movefile from WordPress",
     "homepage": "https://github.com/vccw-team/wp-cli-scaffold-movefile",
     "license": "GPL-2.0",
     "authors": [
