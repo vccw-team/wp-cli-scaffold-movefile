@@ -8,6 +8,12 @@ Get informations as YAML format from WordPress for [Wordmove's Movefile](http://
 $ wp scaffold movefile
 ```
 
+For more details:
+
+```
+$ wp help scaffold movefile
+```
+
 Quick links: [Installing](#installing) | [Contributing](#contributing)
 
 ## Installing

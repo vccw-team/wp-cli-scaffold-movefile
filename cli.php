@@ -30,7 +30,7 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 	 * ## OPTIONS
 	 *
 	 * [--environment=<environment>]
-	 * : The environment such as local, production, staging, etc. default: production
+	 * : The environment such as local, production, staging, etc.
 	 * ---
 	 * default: production
 	 * ---
