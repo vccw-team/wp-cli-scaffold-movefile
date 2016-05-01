@@ -1,12 +1,12 @@
 {
-    "name": "amimoto/wp-cli-scaffold-movefile",
-    "description": "Generate Movefile for Wordmove.",
+    "name": "vccw/wp-cli-scaffold-movefile",
+    "description": "Get informations as YAML format from WordPress for Wordmove's Movefile",
     "homepage": "https://github.com/miya0001/wp-cli-scaffold-movefile",
     "license": "GPL-2.0",
     "authors": [
         {
             "name": "Takayuki Miyauchi",
-            "homepage": "https://github.com/miya0001"
+            "homepage": "http://vccw.cc/"
         }
     ],
     "autoload": {
