@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/miya0001/wp-cli-scaffold-movefile.svg?branch=master)](https://travis-ci.org/miya0001/wp-cli-scaffold-movefile)
 
-Generate Movefile for Wordmove.
+Get informations as YAML format from WordPress for [Wordmove's Movefile](http://welaika.github.io/wordmove/).
 
 ```
 $ wp scaffold movefile
