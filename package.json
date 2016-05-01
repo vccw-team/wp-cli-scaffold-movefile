@@ -1,0 +1,19 @@
+{
+  "name": "wp-cli-scaffold-movefile",
+  "version": "1.2.1",
+  "description": "[![Build Status](https://travis-ci.org/miya0001/wp-cli-scaffold-movefile.svg?branch=master)](https://travis-ci.org/miya0001/wp-cli-scaffold-movefile)",
+  "scripts": {
+    "setup": "WP_CLI_BIN_DIR=/tmp/wp-cli-phar bash bin/install-package-tests.sh",
+    "test": "WP_CLI_BIN_DIR=/tmp/wp-cli-phar ./vendor/bin/behat"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miya0001/wp-cli-scaffold-movefile.git"
+  },
+  "author": "",
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/miya0001/wp-cli-scaffold-movefile/issues"
+  },
+  "homepage": "https://github.com/miya0001/wp-cli-scaffold-movefile#readme"
+}

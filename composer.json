@@ -1,0 +1,23 @@
+{
+    "name": "miya0001/wp-cli-scaffold-movefile",
+    "description": "Generate Movefile for Wordmove.",
+    "homepage": "https://github.com/miya0001/wp-cli-scaffold-movefile",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Takayuki Miyauchi",
+            "homepage": "https://github.com/miya0001"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "cli.php"
+        ]
+    },
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "behat/behat": "~2.5"
+    }
+}

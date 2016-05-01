@@ -4,8 +4,6 @@
 
 Generate Movefile for Wordmove.
 
-[![Build Status](https://travis-ci.org/miya0001/wp-cli-scaffold-movefile.svg?branch=master)](https://travis-ci.org/miya0001/wp-cli-scaffold-movefile)
-
 Quick links: [Installing](#installing) | [Contributing](#contributing)
 
 ## Installing
