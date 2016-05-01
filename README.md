@@ -1,8 +1,12 @@
-# miya0001/wp-cli-scaffold-movefile
+# amimoto/wp-cli-scaffold-movefile
 
 [![Build Status](https://travis-ci.org/miya0001/wp-cli-scaffold-movefile.svg?branch=master)](https://travis-ci.org/miya0001/wp-cli-scaffold-movefile)
 
 Generate Movefile for Wordmove.
+
+```
+$ wp scaffold movefile
+```
 
 Quick links: [Installing](#installing) | [Contributing](#contributing)
 
@@ -10,7 +14,7 @@ Quick links: [Installing](#installing) | [Contributing](#contributing)
 
 Installing this package requires WP-CLI v0.23.0 or greater. Update to the latest stable release with `wp cli update`.
 
-Once you've done so, you can install this package with `wp package install miya0001/wp-cli-scaffold-movefile`
+Once you've done so, you can install this package with `wp package install amimoto/wp-cli-scaffold-movefile`
 
 ## Contributing
 

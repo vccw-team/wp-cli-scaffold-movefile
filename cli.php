@@ -30,7 +30,10 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 	 * ## OPTIONS
 	 *
 	 * [--environment=<environment>]
-	 * : The environment such as local, production, staging, etc.
+	 * : The environment such as local, production, staging, etc. default: production
+	 * ---
+	 * default: production
+	 * ---
 	 *
 	 * [--movefile=<movefile>]
 	 * : Path to the Movefile.
@@ -52,10 +55,6 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			if ( file_exists( realpath( $assoc_args['movefile'] ) ) ) {
 				$yaml = spyc_load_file( $assoc_args['movefile'] );
 			}
-		}
-
-		if ( empty( $assoc_args['environment'] ) ) {
-			$assoc_args['environment'] = 'production';
 		}
 
 		$yaml[ $assoc_args['environment'] ]['vhost'] = home_url();
