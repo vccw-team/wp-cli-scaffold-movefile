@@ -71,7 +71,7 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			if ( empty( $yaml[ $assoc_args['environment'] ]['ssh'] ) ) {
 				$yaml[ $assoc_args['environment'] ]['ssh'] = array(
 					'host' => preg_replace( "#https?://#", "", home_url() ),
-					'user' => get_current_user()
+					'user' => `whoami`
 				);
 			}
 		}
