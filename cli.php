@@ -57,7 +57,7 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			}
 		}
 
-		$yaml[ $assoc_args['environment'] ]['vhost'] = home_url();
+		$yaml[ $assoc_args['environment'] ]['vhost'] = site_url();
 		$yaml[ $assoc_args['environment'] ]['wordpress_path'] = WP_CLI::get_runner()->config['path'];
 		$yaml[ $assoc_args['environment'] ]['database']['name'] = DB_NAME;
 		$yaml[ $assoc_args['environment'] ]['database']['user'] = DB_USER;
