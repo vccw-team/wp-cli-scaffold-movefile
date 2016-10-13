@@ -4,6 +4,8 @@ if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
 	return;
 }
 
+use WP_CLI\Utils;
+
 /**
  * Generate a Movefile for Wordmove.
  *
@@ -48,37 +50,22 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 	 *
 	 */
 	function __invoke( $args, $assoc_args ) {
-		$yaml = spyc_load_file( dirname( __FILE__ ) . '/templates/Movefile' );
-		unset( $yaml['production']['ssh'] );
+		$vars = array(
+			'site_url' => site_url(),
+			'wordpress_path' => WP_CLI::get_runner()->config['path'],
+			'db_name' => DB_NAME,
+			'db_user' => DB_USER,
+			'db_pass' => DB_PASSWORD,
+			'db_host' => DB_HOST,
+			'db_charset' => DB_CHARSET,
+		);
 
-		if ( ! empty( $assoc_args['movefile'] ) ) {
-			if ( file_exists( realpath( $assoc_args['movefile'] ) ) ) {
-				$yaml = spyc_load_file( $assoc_args['movefile'] );
-			}
-		}
+		$movefile = Utils\mustache_render(
+			dirname( __FILE__ ) . '/templates/Movefile.mustache',
+			$vars
+		);
 
-		$yaml[ $assoc_args['environment'] ]['vhost'] = site_url();
-		$yaml[ $assoc_args['environment'] ]['wordpress_path'] = WP_CLI::get_runner()->config['path'];
-		$yaml[ $assoc_args['environment'] ]['database']['name'] = DB_NAME;
-		$yaml[ $assoc_args['environment'] ]['database']['user'] = DB_USER;
-		$yaml[ $assoc_args['environment'] ]['database']['password'] = DB_PASSWORD;
-		$yaml[ $assoc_args['environment'] ]['database']['host'] = DB_HOST;
-		$yaml[ $assoc_args['environment'] ]['database']['charset'] = DB_CHARSET;
-		if ( 'local' !== $assoc_args['environment'] ) {
-			if ( empty( $yaml[ $assoc_args['environment'] ]['exclude'] ) ) {
-				$yaml[ $assoc_args['environment'] ]['exclude'] = $this->exclude;
-			}
-			if ( empty( $yaml[ $assoc_args['environment'] ]['ssh'] ) ) {
-				$yaml[ $assoc_args['environment'] ]['ssh'] = array(
-					'host' => preg_replace( "#https?://#", "", home_url() ),
-					'user' => exec( 'whoami' )
-				);
-			}
-		}
-
-		$yaml = Spyc::YAMLDump( $yaml, 2, 0 );
-		$yaml = substr( $yaml, 4 ); // Spyc::YAMLDump() prepends "---\n" :(
-		WP_CLI::line( $yaml );
+		WP_CLI::line( $movefile );
 	}
 }
 
