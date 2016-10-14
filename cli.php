@@ -4,6 +4,8 @@ if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
 	return;
 }
 
+use WP_CLI\Utils;
+
 /**
  * Generate a Movefile for Wordmove.
  *
@@ -29,14 +31,8 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 	 *
 	 * ## OPTIONS
 	 *
-	 * [--environment=<environment>]
-	 * : The environment such as local, production, staging, etc.
-	 * ---
-	 * default: production
-	 * ---
-	 *
-	 * [--movefile=<movefile>]
-	 * : Path to the Movefile.
+	 * [--force]
+	 * : Overwrite Movefile that already exist.
 	 *
 	 * ## EXAMPLES
 	 *
@@ -47,38 +43,79 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 	 *     wp scaffold movefile --movefile=/path/to/Movefile
 	 *
 	 */
-	function __invoke( $args, $assoc_args ) {
-		$yaml = spyc_load_file( dirname( __FILE__ ) . '/templates/Movefile' );
-		unset( $yaml['production']['ssh'] );
+	function __invoke( $args, $assoc_args )
+	{
+		$vars = array(
+			'site_url' => site_url(),
+			'wordpress_path' => WP_CLI::get_runner()->config['path'],
+			'db_name' => DB_NAME,
+			'db_user' => DB_USER,
+			'db_pass' => DB_PASSWORD,
+			'db_host' => DB_HOST,
+			'db_charset' => DB_CHARSET,
+		);
 
-		if ( ! empty( $assoc_args['movefile'] ) ) {
-			if ( file_exists( realpath( $assoc_args['movefile'] ) ) ) {
-				$yaml = spyc_load_file( $assoc_args['movefile'] );
-			}
+		$movefile = Utils\mustache_render(
+			dirname( __FILE__ ) . '/templates/Movefile.mustache',
+			$vars
+		);
+
+		if ( empty( $args[0] ) ) {
+			$filename = getcwd() . "/Movefile";
+		} else {
+			$filename = $args[0];
 		}
 
-		$yaml[ $assoc_args['environment'] ]['vhost'] = site_url();
-		$yaml[ $assoc_args['environment'] ]['wordpress_path'] = WP_CLI::get_runner()->config['path'];
-		$yaml[ $assoc_args['environment'] ]['database']['name'] = DB_NAME;
-		$yaml[ $assoc_args['environment'] ]['database']['user'] = DB_USER;
-		$yaml[ $assoc_args['environment'] ]['database']['password'] = DB_PASSWORD;
-		$yaml[ $assoc_args['environment'] ]['database']['host'] = DB_HOST;
-		$yaml[ $assoc_args['environment'] ]['database']['charset'] = DB_CHARSET;
-		if ( 'local' !== $assoc_args['environment'] ) {
-			if ( empty( $yaml[ $assoc_args['environment'] ]['exclude'] ) ) {
-				$yaml[ $assoc_args['environment'] ]['exclude'] = $this->exclude;
+		$force = \WP_CLI\Utils\get_flag_value( $assoc_args, 'force' );
+		$result = $this->create_file( $filename, $movefile, $force );
+
+		if ( $result ) {
+			WP_CLI::success( $filename );
+		} else {
+			WP_CLI::success( "Movefile wasn't overwrited." );
+		}
+	}
+
+	private function create_file( $filename, $contents, $force )
+	{
+		$wp_filesystem = $this->init_wp_filesystem();
+
+		$should_write_file = $this->prompt_if_files_will_be_overwritten( $filename, $force );
+		if ( $should_write_file ) {
+			$wp_filesystem->mkdir( dirname( $filename ) );
+			if ( ! $wp_filesystem->put_contents( $filename, $contents ) ) {
+				WP_CLI::error( "Error creating file: $filename" );
 			}
-			if ( empty( $yaml[ $assoc_args['environment'] ]['ssh'] ) ) {
-				$yaml[ $assoc_args['environment'] ]['ssh'] = array(
-					'host' => preg_replace( "#https?://#", "", home_url() ),
-					'user' => exec( 'whoami' )
-				);
-			}
+			return true;
 		}
 
-		$yaml = Spyc::YAMLDump( $yaml, 2, 0 );
-		$yaml = substr( $yaml, 4 ); // Spyc::YAMLDump() prepends "---\n" :(
-		WP_CLI::line( $yaml );
+		return false;
+	}
+
+	/**
+	 * Initialize WP Filesystem
+	 */
+	private function init_wp_filesystem()
+	{
+		global $wp_filesystem;
+		WP_Filesystem();
+		return $wp_filesystem;
+	}
+
+	private function prompt_if_files_will_be_overwritten( $filename, $force )
+	{
+		$should_write_file = false;
+		if ( ! file_exists( $filename ) ) {
+			return true;
+		}
+		WP_CLI::warning( 'File already exists.' );
+		if ( $force ) {
+			$should_write_file = true;
+		} else {
+			$should_write_file = cli\confirm( 'Do you want to overwrite', false );
+		}
+
+		return $should_write_file;
 	}
 }
 

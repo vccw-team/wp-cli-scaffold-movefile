@@ -4,57 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "54a537b9a3f8e53d4e64376c5d3df83b",
-    "content-hash": "e6c335e4ede1886d6f3dbf7cef812bbd",
-    "packages": [
-        {
-            "name": "mustangostang/spyc",
-            "version": "0.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mustangostang/spyc.git",
-                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/dc4785b4d7227fd9905e086d499fb8abfadf9977",
-                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.5.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "Spyc.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT License"
-            ],
-            "authors": [
-                {
-                    "name": "mustangostang",
-                    "email": "vlad.andersen@gmail.com"
-                }
-            ],
-            "description": "A simple YAML loader/dumper class for PHP",
-            "homepage": "https://github.com/mustangostang/spyc/",
-            "keywords": [
-                "spyc",
-                "yaml",
-                "yml"
-            ],
-            "time": "2013-02-21 10:52:01"
-        }
-    ],
+    "hash": "d8367ff1dfa625e655f62b69c9483303",
+    "content-hash": "54a0fe8643d3b75dd628f65f9d757cf1",
+    "packages": [],
     "packages-dev": [
         {
             "name": "behat/behat",
@@ -178,6 +130,53 @@
                 "parser"
             ],
             "time": "2013-10-15 11:22:17"
+        },
+        {
+            "name": "mustangostang/spyc",
+            "version": "0.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mustangostang/spyc.git",
+                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/dc4785b4d7227fd9905e086d499fb8abfadf9977",
+                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "Spyc.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT License"
+            ],
+            "authors": [
+                {
+                    "name": "mustangostang",
+                    "email": "vlad.andersen@gmail.com"
+                }
+            ],
+            "description": "A simple YAML loader/dumper class for PHP",
+            "homepage": "https://github.com/mustangostang/spyc/",
+            "keywords": [
+                "spyc",
+                "yaml",
+                "yml"
+            ],
+            "time": "2013-02-21 10:52:01"
         },
         {
             "name": "symfony/config",
@@ -690,8 +689,6 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {
-        "php": ">=5.4"
-    },
+    "platform": [],
     "platform-dev": []
 }
