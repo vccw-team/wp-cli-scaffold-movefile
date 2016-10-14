@@ -36,11 +36,15 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp scaffold movefile
+	 *     # Basic usage
+	 *     $ wp scaffold movefile
+	 *     Success: /path/to/Movefile
 	 *
-	 *     wp scaffold movefile --environment=production
-	 *
-	 *     wp scaffold movefile --movefile=/path/to/Movefile
+	 *     # Overwrite when Movefile exists
+	 *     $ wp scaffold movefile
+	 *     Warning: File already exists.
+	 *     Do you want to overwrite? [y/N]y
+	 *     Success: /path/to/Movefile
 	 *
 	 */
 	function __invoke( $args, $assoc_args )
