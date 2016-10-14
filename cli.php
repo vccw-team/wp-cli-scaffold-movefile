@@ -31,14 +31,8 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 	 *
 	 * ## OPTIONS
 	 *
-	 * [--environment=<environment>]
-	 * : The environment such as local, production, staging, etc.
-	 * ---
-	 * default: production
-	 * ---
-	 *
-	 * [--movefile=<movefile>]
-	 * : Path to the Movefile.
+	 * [--force]
+	 * : Overwrite Movefile that already exist.
 	 *
 	 * ## EXAMPLES
 	 *
@@ -77,6 +71,8 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 
 		if ( $result ) {
 			WP_CLI::success( $filename );
+		} else {
+			WP_CLI::success( "Movefile wasn't overwrited." );
 		}
 	}
 
@@ -113,7 +109,9 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			return true;
 		}
 		WP_CLI::warning( 'File already exists.' );
-		if ( ! $force ) {
+		if ( $force ) {
+			$should_write_file = true;
+		} else {
 			$should_write_file = cli\confirm( 'Do you want to overwrite', false );
 		}
 

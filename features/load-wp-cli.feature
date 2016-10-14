@@ -1,6 +1,6 @@
 Feature: Test that WP-CLI loads.
 
-  Scenario: WP-CLI loads for your tests
+  Scenario: Scaffold a Movefile
     Given a WP install
 
     When I run `wp help scaffold movefile`
@@ -9,11 +9,68 @@ Feature: Test that WP-CLI loads.
     When I run `wp scaffold movefile`
     Then the return code should be 0
     And the Movefile file should exist
+    And STDOUT should contain:
+      """
+      Success:
+      """
 
-    When I run `wp scaffold movefile`
+  Scenario: Overwrite Movefile by prompting yes
+    Given a WP install
+    And a Movefile file:
+      """
+      Hello
+      """
+    And a session file:
+      """
+      y
+      """
+
+    When I run `wp scaffold movefile < session`
     Then the return code should be 0
     And the Movefile file should exist
+    And the Movefile file should contain:
+      """
+      local:
+      """
+    And STDOUT should contain:
+      """
+      Success:
+      """
 
-    When I run `wp scaffold movefile /tmp/Movefile`
+  Scenario: Don't overwrite Movefile
+    Given a WP install
+    And a Movefile file:
+      """
+      Hello
+      """
+    And a session file:
+      """
+      n
+      """
+
+    When I run `wp scaffold movefile < session`
     Then the return code should be 0
-    And the /tmp/Movefile file should exist
+    And the Movefile file should exist
+    And the Movefile file should contain:
+      """
+      Hello
+      """
+    And STDOUT should contain:
+      """
+      Success:
+      """
+
+  Scenario: Force overwrite Movefile
+    Given a WP install
+    And a Movefile file:
+      """
+      Hello
+      """
+
+    When I run `wp scaffold movefile --force`
+    Then the return code should be 0
+    And the Movefile file should exist
+    And the Movefile file should contain:
+      """
+      local:
+      """
