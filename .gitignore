@@ -1,5 +1,10 @@
-behat.phar
-composer.phar
-/vendor
 .DS_Store
+.editorconfig
+.travis.yml
+behat.phar
+bin
+composer.phar
+features
 installer
+package.json
+vendor
