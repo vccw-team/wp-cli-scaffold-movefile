@@ -14,18 +14,6 @@ use WP_CLI\Utils;
  */
 class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 {
-	private $exclude = array(
-		'.git/',
-		'.gitignore',
-		'.sass-cache/',
-		'bin/',
-		'tmp/*',
-		'Gemfile*',
-		'Movefile',
-		'wp-config.php',
-		'wp-content/*.sql',
-	);
-
 	/**
 	 * Generate a Movefile for Wordmove.
 	 *
