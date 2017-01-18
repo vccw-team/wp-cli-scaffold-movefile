@@ -47,8 +47,8 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			'db_charset' => DB_CHARSET,
 		);
 
-		$movefile = Utils\mustache_render(
-			dirname( __FILE__ ) . '/templates/Movefile.mustache',
+		$movefile = WP_CLI\Utils\mustache_render(
+			self::get_template(),
 			$vars
 		);
 
@@ -108,6 +108,28 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 		}
 
 		return $should_write_file;
+	}
+
+	/**
+	 * Get path to the mustache template.
+	 *
+	 * @return string Path to the template.
+	 */
+	private static function get_template()
+	{
+		$home = getenv( 'HOME' );
+		if ( !$home ) {
+			// sometime in windows $HOME is not defined
+			$home = getenv( 'HOMEDRIVE' ) . getenv( 'HOMEPATH' );
+		}
+
+		$config = $home . '/.wp-cli';
+
+		if ( is_file( $config . '/Movefile.mustache' ) ) {
+			return $config . '/Movefile.mustache';
+		} else {
+			return dirname( __FILE__ ) . '/templates/Movefile.mustache';
+		}
 	}
 }
 
