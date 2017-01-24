@@ -30,6 +30,14 @@ Once you've done so, you can install this package with:
 $ wp package install vccw/wp-cli-scaffold-movefile:@stable
 ```
 
+## Customize a default template
+
+You can customize a default template of the Movefile.
+
+```
+$ curl -o ~/.wp-cli/Movefile.mustache https://github.com/vccw-team/wp-cli-scaffold-movefile/blob/master/templates/Movefile.mustache
+```
+
 ## Contributing
 
 Code and ideas are more than welcome.
