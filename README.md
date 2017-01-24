@@ -38,6 +38,8 @@ You can customize a default template of the Movefile.
 $ curl -o ~/.wp-cli/Movefile.mustache https://github.com/vccw-team/wp-cli-scaffold-movefile/blob/master/templates/Movefile.mustache
 ```
 
+Then edit `~/.wp-cli/Movefile.mustache`.
+
 ## Contributing
 
 Code and ideas are more than welcome.
