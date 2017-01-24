@@ -19,6 +19,9 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 	 *
 	 * ## OPTIONS
 	 *
+	 * [--output]
+	 * : Output the contents of the Movefile.
+	 *
 	 * [--force]
 	 * : Overwrite Movefile that already exist.
 	 *
@@ -38,13 +41,13 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 	function __invoke( $args, $assoc_args )
 	{
 		$vars = array(
-			'site_url' => site_url(),
-			'wordpress_path' => WP_CLI::get_runner()->config['path'],
-			'db_name' => DB_NAME,
-			'db_user' => DB_USER,
-			'db_pass' => DB_PASSWORD,
-			'db_host' => DB_HOST,
-			'db_charset' => DB_CHARSET,
+			'home_url'       => home_url(),
+			'wordpress_path' => untrailingslashit( WP_CLI::get_runner()->config['path'] ),
+			'db_name'        => DB_NAME,
+			'db_user'        => DB_USER,
+			'db_pass'        => DB_PASSWORD,
+			'db_host'        => DB_HOST,
+			'db_charset'     => DB_CHARSET,
 		);
 
 		$movefile = WP_CLI\Utils\mustache_render(
@@ -52,19 +55,23 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			$vars
 		);
 
-		if ( empty( $args[0] ) ) {
-			$filename = getcwd() . "/Movefile";
+		if ( \WP_CLI\Utils\get_flag_value( $assoc_args, 'output' ) ) {
+			WP_CLI::line( $movefile );
 		} else {
-			$filename = $args[0];
-		}
+			if ( empty( $args[0] ) ) {
+				$filename = getcwd() . "/Movefile";
+			} else {
+				$filename = $args[0];
+			}
 
-		$force = \WP_CLI\Utils\get_flag_value( $assoc_args, 'force' );
-		$result = $this->create_file( $filename, $movefile, $force );
+			$force = \WP_CLI\Utils\get_flag_value( $assoc_args, 'force' );
+			$result = $this->create_file( $filename, $movefile, $force );
 
-		if ( $result ) {
-			WP_CLI::success( $filename );
-		} else {
-			WP_CLI::success( "Movefile wasn't overwrited." );
+			if ( $result ) {
+				WP_CLI::success( $filename );
+			} else {
+				WP_CLI::success( "Movefile wasn't overwrited." );
+			}
 		}
 	}
 
