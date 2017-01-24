@@ -53,7 +53,7 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 		);
 
 		if ( empty( $args[0] ) ) {
-			$filename = getcwd() . "/Movefile.yml";
+			$filename = getcwd() . "/Movefile";
 		} else {
 			$filename = $args[0];
 		}
