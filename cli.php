@@ -38,13 +38,13 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 	function __invoke( $args, $assoc_args )
 	{
 		$vars = array(
-			'site_url' => site_url(),
+			'home_url'       => home_url(),
 			'wordpress_path' => WP_CLI::get_runner()->config['path'],
-			'db_name' => DB_NAME,
-			'db_user' => DB_USER,
-			'db_pass' => DB_PASSWORD,
-			'db_host' => DB_HOST,
-			'db_charset' => DB_CHARSET,
+			'db_name'        => DB_NAME,
+			'db_user'        => DB_USER,
+			'db_pass'        => DB_PASSWORD,
+			'db_host'        => DB_HOST,
+			'db_charset'     => DB_CHARSET,
 		);
 
 		$movefile = WP_CLI\Utils\mustache_render(
