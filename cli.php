@@ -70,7 +70,7 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			if ( $result ) {
 				WP_CLI::success( $filename );
 			} else {
-				WP_CLI::success( "Movefile wasn't overwrited." );
+				WP_CLI::success( "Movefile wasn't overwritten." );
 			}
 		}
 	}
@@ -83,7 +83,7 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 		if ( $should_write_file ) {
 			$wp_filesystem->mkdir( dirname( $filename ) );
 			if ( ! $wp_filesystem->put_contents( $filename, $contents ) ) {
-				WP_CLI::error( "Error creating file: $filename" );
+				WP_CLI::error( "Could not create file: $filename" );
 			}
 			return true;
 		}
