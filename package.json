@@ -1,5 +1,5 @@
 {
-  "name": "wp-cli-scaffold-movefile",
+  "name": "vccw-team/wp-cli-scaffold-movefile",
   "description": "[![Build Status](https://travis-ci.org/vccw-team/wp-cli-scaffold-movefile.svg?branch=master)](https://travis-ci.org/vccw-team/wp-cli-scaffold-movefile)",
   "scripts": {
     "setup": "WP_CLI_BIN_DIR=/tmp/wp-cli-phar bash bin/install-package-tests.sh",
