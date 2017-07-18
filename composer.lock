@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d8367ff1dfa625e655f62b69c9483303",
-    "content-hash": "54a0fe8643d3b75dd628f65f9d757cf1",
+    "content-hash": "c7d868bc8f4565f4e2d72cde94d61fea",
     "packages": [],
     "packages-dev": [
         {
@@ -68,7 +67,7 @@
                 "Behat",
                 "Symfony2"
             ],
-            "time": "2015-06-01 09:37:55"
+            "time": "2015-06-01T09:37:55+00:00"
         },
         {
             "name": "behat/gherkin",
@@ -129,7 +128,7 @@
                 "Symfony2",
                 "parser"
             ],
-            "time": "2013-10-15 11:22:17"
+            "time": "2013-10-15T11:22:17+00:00"
         },
         {
             "name": "mustangostang/spyc",
@@ -176,7 +175,7 @@
                 "yaml",
                 "yml"
             ],
-            "time": "2013-02-21 10:52:01"
+            "time": "2013-02-21T10:52:01+00:00"
         },
         {
             "name": "symfony/config",
@@ -229,7 +228,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:54:35"
+            "time": "2016-03-04T07:54:35+00:00"
         },
         {
             "name": "symfony/console",
@@ -289,7 +288,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-17 09:19:04"
+            "time": "2016-03-17T09:19:04+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -351,7 +350,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-21 07:27:21"
+            "time": "2016-03-21T07:27:21+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -411,7 +410,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-07 14:04:32"
+            "time": "2016-03-07T14:04:32+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -460,7 +459,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-27 10:24:39"
+            "time": "2016-03-27T10:24:39+00:00"
         },
         {
             "name": "symfony/finder",
@@ -509,7 +508,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-10 10:53:53"
+            "time": "2016-03-10T10:53:53+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -568,7 +567,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-01-20 09:13:37"
+            "time": "2016-01-20T09:13:37+00:00"
         },
         {
             "name": "symfony/translation",
@@ -632,7 +631,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-25 01:40:30"
+            "time": "2016-03-25T01:40:30+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -681,7 +680,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:54:35"
+            "time": "2016-03-04T07:54:35+00:00"
         }
     ],
     "aliases": [],
