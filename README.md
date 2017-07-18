@@ -27,7 +27,7 @@ $ wp cli update
 Once you've done so, you can install this package with:
 
 ```
-$ wp package install vccw/wp-cli-scaffold-movefile:@stable
+$ wp package install git@github.com:vccw-team/wp-cli-scaffold-movefile.git
 ```
 
 ## Customize a default template
