@@ -7,7 +7,7 @@ if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
 use WP_CLI\Utils;
 
 /**
- * Generate a Movefile for Wordmove.
+ * Generate a movefile.yml for Wordmove.
  *
  * @subpackage commands/community
  * @maintainer Takayuki Miyauchi
@@ -15,27 +15,27 @@ use WP_CLI\Utils;
 class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 {
 	/**
-	 * Generate a Movefile for Wordmove.
+	 * Generate a movefile.yml for Wordmove.
 	 *
 	 * ## OPTIONS
 	 *
 	 * [--output]
-	 * : Output the contents of the Movefile.
+	 * : Output the contents of the movefile.yml.
 	 *
 	 * [--force]
-	 * : Overwrite Movefile that already exist.
+	 * : Overwrite movefile.yml that already exist.
 	 *
 	 * ## EXAMPLES
 	 *
 	 *     # Basic usage
 	 *     $ wp scaffold movefile
-	 *     Success: /path/to/Movefile
+	 *     Success: /path/to/movefile.yml
 	 *
-	 *     # Overwrite when Movefile exists
+	 *     # Overwrite when movefile.yml exists
 	 *     $ wp scaffold movefile
 	 *     Warning: File already exists.
 	 *     Do you want to overwrite? [y/N]y
-	 *     Success: /path/to/Movefile
+	 *     Success: /path/to/movefile.yml
 	 *
 	 */
 	function __invoke( $args, $assoc_args )
@@ -59,7 +59,7 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			WP_CLI::line( $movefile );
 		} else {
 			if ( empty( $args[0] ) ) {
-				$filename = getcwd() . "/Movefile";
+				$filename = getcwd() . "/movefile.yml";
 			} else {
 				$filename = $args[0];
 			}
@@ -70,7 +70,7 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			if ( $result ) {
 				WP_CLI::success( $filename );
 			} else {
-				WP_CLI::success( "Movefile wasn't overwritten." );
+				WP_CLI::success( "movefile.yml wasn't overwritten." );
 			}
 		}
 	}
@@ -132,10 +132,10 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 
 		$config = $home . '/.wp-cli';
 
-		if ( is_file( $config . '/Movefile.mustache' ) ) {
-			return $config . '/Movefile.mustache';
+		if ( is_file( $config . '/movefile.mustache' ) ) {
+			return $config . '/movefile.mustache';
 		} else {
-			return dirname( __FILE__ ) . '/templates/Movefile.mustache';
+			return dirname( __FILE__ ) . '/templates/movefile.mustache';
 		}
 	}
 }
