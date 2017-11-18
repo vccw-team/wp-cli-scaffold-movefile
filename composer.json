@@ -11,12 +11,15 @@
         }
     ],
     "autoload": {
-        "files": [
-            "cli.php"
-        ]
-    },
+        "psr-4": {
+            "": "src/"
+        },
+        "files": [ "cli.php" ]
+	},
     "require": {},
     "require-dev": {
-        "behat/behat": "~2.5"
+        "behat/behat": "~2.5",
+        "wp-cli/wp-cli": "*",
+		"phpunit/phpunit": "~5.6"
     }
 }
