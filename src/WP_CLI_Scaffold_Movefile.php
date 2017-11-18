@@ -137,14 +137,12 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			$home = getenv( 'HOMEDRIVE' ) . getenv( 'HOMEPATH' );
 		}
 
-		$config = $home . '/.wp-cli';
+		$config = $home . '/.wp-cliss';
 
 		if ( is_file( $config . '/movefile.mustache' ) ) {
 			return $config . '/movefile.mustache';
 		} else {
-			$dir = dirname( dirname( __FILE__ ) );
-			$path = array( $dir, '/templates/movefile.mustache' );
-			$template = implode( "", $path );
+			$template = dirname( dirname( __FILE__ ) ) . '/templates/movefile.mustache';
 			return $template;
 		}
 	}
