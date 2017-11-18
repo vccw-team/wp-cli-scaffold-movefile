@@ -25,7 +25,7 @@ Feature: Test that WP-CLI loads.
       y
       """
 
-    When I run `wp scaffold movefile < session`
+    When I try `wp scaffold movefile < session`
     Then the return code should be 0
     And the Movefile file should exist
     And the Movefile file should contain:
@@ -35,6 +35,10 @@ Feature: Test that WP-CLI loads.
     And STDOUT should contain:
       """
       Success:
+      """
+    And STDERR should be:
+      """
+      Warning: File already exists.
       """
 
   Scenario: Don't overwrite Movefile
@@ -48,7 +52,7 @@ Feature: Test that WP-CLI loads.
       n
       """
 
-    When I run `wp scaffold movefile < session`
+    When I try `wp scaffold movefile < session`
     Then the return code should be 0
     And the Movefile file should exist
     And the Movefile file should contain:
@@ -59,6 +63,10 @@ Feature: Test that WP-CLI loads.
       """
       Success:
       """
+    And STDERR should be:
+      """
+      Warning: File already exists.
+      """
 
   Scenario: Force overwrite Movefile
     Given a WP install
@@ -67,10 +75,14 @@ Feature: Test that WP-CLI loads.
       Hello
       """
 
-    When I run `wp scaffold movefile --force`
+    When I try `wp scaffold movefile --force`
     Then the return code should be 0
     And the Movefile file should exist
     And the Movefile file should contain:
       """
       local:
+      """
+    And STDERR should be:
+      """
+      Warning: File already exists.
       """
