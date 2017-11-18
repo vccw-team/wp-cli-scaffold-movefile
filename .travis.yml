@@ -58,4 +58,4 @@ before_script:
   - composer validate
 
 script:
-  - vendor/bin/behat
+  - bash bin/test.sh
