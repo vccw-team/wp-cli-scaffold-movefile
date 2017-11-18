@@ -139,6 +139,7 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 		if ( is_file( $config . '/movefile.mustache' ) ) {
 			return $config . '/movefile.mustache';
 		} else {
+			WP_CLI::line( dirname( dirname( __FILE__ ) ) );
 			$template = dirname( dirname( __FILE__ ) ) . '/templates/movefile.mustache';
 			return $template;
 		}
