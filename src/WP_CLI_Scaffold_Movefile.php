@@ -46,8 +46,16 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			'db_charset'     => DB_CHARSET,
 		);
 
+		$movefile_template = self::get_template();
+		if ( ! is_file( $movefile_template ) ) {
+			WP_CLI::error( sprintf(
+				'Template for Movefile.yml "%s" not found.',
+				$movefile_template
+			) );
+		}
+
 		$movefile = WP_CLI\Utils\mustache_render(
-			self::get_template(),
+			$movefile_template,
 			$vars
 		);
 
@@ -131,7 +139,8 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 		if ( is_file( $config . '/movefile.mustache' ) ) {
 			return $config . '/movefile.mustache';
 		} else {
-			return dirname( dirname( __FILE__ ) ) . '/templates/movefile.mustache';
+			$template = dirname( dirname( __FILE__ ) ) . '/templates/movefile.mustache';
+			return $template;
 		}
 	}
 }
