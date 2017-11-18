@@ -28,7 +28,7 @@ Feature: Test that WP-CLI loads.
     When I run `wp scaffold movefile < session`
     Then the return code should be 0
     And the movefile.yml file should exist
-    And the movefile.yml file should contain:
+    And the movefile.yml file should be:
       """
       local:
       """
