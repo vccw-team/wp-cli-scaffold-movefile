@@ -3,9 +3,9 @@
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
-$steps->Then( '/^the return code should be (\d+)$/',
-	function ( $world, $return_code ) {
-		if ( $return_code != $world->result->return_code ) {
+$steps->Then( '/^the return code should( not)? be (\d+)$/',
+	function ( $world, $not, $return_code ) {
+		if ( ( ! $not && $return_code != $world->result->return_code ) || ( $not && $return_code == $world->result->return_code ) ) {
 			throw new RuntimeException( $world->result );
 		}
 	}
@@ -145,6 +145,16 @@ $steps->Then( '/^(STDOUT|STDERR) should not be empty$/',
 	}
 );
 
+$steps->Then( '/^(STDOUT|STDERR) should be a version string (<|<=|>|>=|==|=|!=|<>) ([+\w.{}-]+)$/',
+	function ( $world, $stream, $operator, $goal_ver ) {
+		$goal_ver = $world->replace_variables( $goal_ver );
+		$stream = strtolower( $stream );
+		if ( false === version_compare( trim( $world->result->$stream, "\n" ), $goal_ver, $operator ) ) {
+			throw new Exception( $world->result );
+		}
+	}
+);
+
 $steps->Then( '/^the (.+) (file|directory) should (exist|not exist|be:|contain:|not contain:)$/',
 	function ( $world, $path, $type, $action, $expected = null ) {
 		$path = $world->replace_variables( $path );
@@ -162,12 +172,12 @@ $steps->Then( '/^the (.+) (file|directory) should (exist|not exist|be:|contain:|
 		switch ( $action ) {
 		case 'exist':
 			if ( ! $test( $path ) ) {
-				throw new Exception( $world->result );
+				throw new Exception( "$path doesn't exist." );
 			}
 			break;
 		case 'not exist':
 			if ( $test( $path ) ) {
-				throw new Exception( $world->result );
+				throw new Exception( "$path exists." );
 			}
 			break;
 		default:
@@ -190,3 +200,38 @@ $steps->Then( '/^the (.+) (file|directory) should (exist|not exist|be:|contain:|
 	}
 );
 
+$steps->Then( '/^the contents of the (.+) file should match (((\/.+\/)|(#.+#))([a-z]+)?)$/',
+	function ( $world, $path, $expected ) {
+		$path = $world->replace_variables( $path );
+		// If it's a relative path, make it relative to the current test dir
+		if ( '/' !== $path[0] ) {
+			$path = $world->variables['RUN_DIR'] . "/$path";
+		}
+		$contents = file_get_contents( $path );
+		assertRegExp( $expected, $contents );
+	}
+);
+
+$steps->Then( '/^(STDOUT|STDERR) should match (((\/.+\/)|(#.+#))([a-z]+)?)$/',
+	function ( $world, $stream, $expected ) {
+		$stream = strtolower( $stream );
+		assertRegExp( $expected, $world->result->$stream );
+	}
+);
+
+$steps->Then( '/^an email should (be sent|not be sent)$/', function( $world, $expected ) {
+	if ( 'be sent' === $expected ) {
+		assertNotEquals( 0, $world->email_sends );
+	} else if ( 'not be sent' === $expected ) {
+		assertEquals( 0, $world->email_sends );
+	} else {
+		throw new Exception( 'Invalid expectation' );
+	}
+});
+
+$steps->Then( '/^the HTTP status code should be (\d+)$/',
+	function ( $world, $return_code ) {
+		$response = \Requests::request( 'http://localhost:8080' );
+		assertEquals( $return_code, $response->status_code );
+	}
+);
