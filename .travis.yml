@@ -20,5 +20,5 @@ cache:
   - composer
   - $HOME/.composer/cache
 
-before_script: composer setup
-script: vendor/bin/behat
+before_script: WP_CLI_BIN_DIR=/tmp/wp-cli-phar bash bin/install-package-tests.sh
+script: WP_CLI_BIN_DIR=/tmp/wp-cli-phar ./vendor/bin/behat
