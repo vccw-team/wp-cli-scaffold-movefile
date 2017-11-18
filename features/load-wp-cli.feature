@@ -9,6 +9,10 @@ Feature: Test that WP-CLI loads.
     When I run `wp scaffold movefile`
     Then the return code should be 0
     And the movefile.yml file should exist
+    And the movefile.yml file should contain:
+      """
+      local:
+      """
     And STDOUT should contain:
       """
       Success:
@@ -28,7 +32,7 @@ Feature: Test that WP-CLI loads.
     When I run `wp scaffold movefile < session`
     Then the return code should be 0
     And the movefile.yml file should exist
-    And the movefile.yml file should be:
+    And the movefile.yml file should contain:
       """
       local:
       """
