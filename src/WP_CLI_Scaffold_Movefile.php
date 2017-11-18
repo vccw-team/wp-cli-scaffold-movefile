@@ -46,7 +46,7 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 			'db_charset'     => DB_CHARSET,
 		);
 
-		$movefile_template = self::get_template();
+		$movefile_template = $this->get_movefile_template();
 		if ( ! is_file( $movefile_template ) ) {
 			WP_CLI::error( sprintf(
 				'Template for Movefile.yml "%s" not found.',
@@ -129,7 +129,7 @@ class WP_CLI_Scaffold_Movefile extends WP_CLI_Command
 	 *
 	 * @return string Path to the template.
 	 */
-	private static function get_template()
+	private function get_movefile_template()
 	{
 		$home = getenv( 'HOME' );
 		if ( !$home ) {
