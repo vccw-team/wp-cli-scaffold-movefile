@@ -11,9 +11,10 @@
         }
     ],
     "autoload": {
-        "files": [
-            "cli.php"
-        ]
+		"psr-4": {
+			"": "src/"
+		},
+		"files": [ "cli.php" ]
     },
 	"scripts": {
 		"setup": "WP_CLI_BIN_DIR=/tmp/wp-cli-phar bash bin/install-package-tests.sh",
