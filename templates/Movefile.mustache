@@ -10,6 +10,7 @@ local:
     charset: "{{ db_charset }}"
 
   # paths: # you can customize wordpress internal paths
+  #   wp_config: "wp-config-custom.php"
   #   wp_content: "wp-content"
   #   uploads: "wp-content/uploads"
   #   plugins: "wp-content/plugins"
@@ -36,7 +37,7 @@ production:
     - "bin/"
     - "tmp/*"
     - "Gemfile*"
-    - "Movefile"
+    - "movefile.yml"
     - "wp-config.php"
     - "wp-content/*.sql"
 
