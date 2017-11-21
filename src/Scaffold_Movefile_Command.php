@@ -120,18 +120,18 @@ class Scaffold_Movefile_Command extends WP_CLI_Command
 	 */
 	private static function get_template()
 	{
-//		$home = getenv( 'HOME' );
-//		if ( !$home ) {
-//			// sometime in windows $HOME is not defined
-//			$home = getenv( 'HOMEDRIVE' ) . getenv( 'HOMEPATH' );
-//		}
-//
-//		$config = $home . '/.wp-cli';
-//
-//		if ( is_file( $config . '/movefile.mustache' ) ) {
-//			return $config . '/movefile.mustache';
-//		} else {
+		$home = getenv( 'HOME' );
+		if ( !$home ) {
+			// sometime in windows $HOME is not defined
+			$home = getenv( 'HOMEDRIVE' ) . getenv( 'HOMEPATH' );
+		}
+
+		$config = $home . '/.wp-cli';
+
+		if ( is_file( $config . '/movefile.mustache' ) ) {
+			return $config . '/movefile.mustache';
+		} else {
 			return dirname( __FILE__ ) . '/templates/movefile.mustache';
-//		}
+		}
 	}
 }
