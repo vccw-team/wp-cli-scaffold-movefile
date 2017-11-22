@@ -1,6 +1,6 @@
 Feature: Test that WP-CLI loads.
 
-  Scenario: Scaffold a movefile.yml
+  Scenario: Scaffold a Movefile.yml
     Given a WP install
 
     When I run `wp help scaffold movefile`
@@ -8,8 +8,8 @@ Feature: Test that WP-CLI loads.
 
     When I run `wp scaffold movefile`
     Then the return code should be 0
-    And the movefile.yml file should exist
-    And the movefile.yml file should contain:
+    And the Movefile.yml file should exist
+    And the Movefile.yml file should contain:
       """
       local:
       """
@@ -18,9 +18,9 @@ Feature: Test that WP-CLI loads.
       Success:
       """
 
-  Scenario: Overwrite movefile.yml by prompting yes
+  Scenario: Overwrite Movefile.yml by prompting yes
     Given a WP install
-    And a movefile.yml file:
+    And a Movefile.yml file:
       """
       Hello
       """
@@ -31,8 +31,8 @@ Feature: Test that WP-CLI loads.
 
     When I try `wp scaffold movefile < session`
     Then the return code should be 0
-    And the movefile.yml file should exist
-    And the movefile.yml file should contain:
+    And the Movefile.yml file should exist
+    And the Movefile.yml file should contain:
       """
       local:
       """
@@ -41,9 +41,9 @@ Feature: Test that WP-CLI loads.
       Success:
       """
 
-  Scenario: Don't overwrite movefile.yml
+  Scenario: Don't overwrite Movefile.yml
     Given a WP install
-    And a movefile.yml file:
+    And a Movefile.yml file:
       """
       Hello
       """
@@ -54,8 +54,8 @@ Feature: Test that WP-CLI loads.
 
     When I try `wp scaffold movefile < session`
     Then the return code should be 0
-    And the movefile.yml file should exist
-    And the movefile.yml file should contain:
+    And the Movefile.yml file should exist
+    And the Movefile.yml file should contain:
       """
       Hello
       """
@@ -64,17 +64,17 @@ Feature: Test that WP-CLI loads.
       Success:
       """
 
-  Scenario: Force overwrite movefile.yml
+  Scenario: Force overwrite Movefile.yml
     Given a WP install
-    And a movefile.yml file:
+    And a Movefile.yml file:
       """
       Hello
       """
 
     When I try `wp scaffold movefile --force`
     Then the return code should be 0
-    And the movefile.yml file should exist
-    And the movefile.yml file should contain:
+    And the Movefile.yml file should exist
+    And the Movefile.yml file should contain:
       """
       local:
       """
