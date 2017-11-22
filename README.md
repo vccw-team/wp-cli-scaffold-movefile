@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/vccw-team/wp-cli-scaffold-movefile.svg?branch=master)](https://travis-ci.org/vccw-team/wp-cli-scaffold-movefile)
 
-Get informations as YAML format for [Wordmove's Movefile](http://welaika.github.io/wordmove/) from WordPress.
+Get informations as YAML format for [Wordmove's movefile.yml](http://welaika.github.io/wordmove/) from WordPress.
 
 ```
 $ wp scaffold movefile
@@ -29,6 +29,16 @@ Once you've done so, you can install this package with:
 ```
 $ wp package install vccw/wp-cli-scaffold-movefile:@stable
 ```
+
+## Customize a default template
+
+You can customize a default template of the movefile.yml.
+
+```
+$ curl -o ~/.wp-cli/movefile.mustache https://github.com/vccw-team/wp-cli-scaffold-movefile/blob/master/templates/movefile.mustache
+```
+
+Then edit `~/.wp-cli/movefile.mustache`.
 
 ## Contributing
 

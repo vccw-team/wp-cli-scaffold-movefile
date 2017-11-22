@@ -1,6 +1,6 @@
 {
     "name": "vccw/wp-cli-scaffold-movefile",
-    "description": "Get informations as YAML format for Wordmove's Movefile from WordPress",
+    "description": "Get informations as YAML format for Wordmove's movefile.yml from WordPress",
 	"type": "wp-cli-package",
     "homepage": "https://github.com/vccw-team/wp-cli-scaffold-movefile",
     "license": "GPL-2.0",
@@ -11,10 +11,15 @@
         }
     ],
     "autoload": {
-        "files": [
-            "cli.php"
-        ]
+		"psr-4": {
+			"": "src/"
+		},
+		"files": [ "cli.php" ]
     },
+	"scripts": {
+		"setup": "WP_CLI_BIN_DIR=/tmp/wp-cli-phar bash bin/install-package-tests.sh",
+		"test": "WP_CLI_BIN_DIR=/tmp/wp-cli-phar ./vendor/bin/behat"
+	},
     "require": {},
     "require-dev": {
         "behat/behat": "~2.5"

@@ -8,3 +8,4 @@ features
 installer
 package.json
 vendor
+composer.lock
