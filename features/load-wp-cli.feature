@@ -3,10 +3,10 @@ Feature: Test that WP-CLI loads.
   Scenario: Scaffold a Movefile.yml
     Given a WP install
 
-    When I run `wp help scaffold Movefile`
+    When I run `wp help scaffold movefile`
     Then the return code should be 0
 
-    When I run `wp scaffold Movefile`
+    When I run `wp scaffold movefile`
     Then the return code should be 0
     And the Movefile.yml file should exist
     And the Movefile.yml file should contain:
@@ -29,7 +29,7 @@ Feature: Test that WP-CLI loads.
       y
       """
 
-    When I try `wp scaffold Movefile < session`
+    When I try `wp scaffold movefile < session`
     Then the return code should be 0
     And the Movefile.yml file should exist
     And the Movefile.yml file should contain:
@@ -52,7 +52,7 @@ Feature: Test that WP-CLI loads.
       n
       """
 
-    When I try `wp scaffold Movefile < session`
+    When I try `wp scaffold movefile < session`
     Then the return code should be 0
     And the Movefile.yml file should exist
     And the Movefile.yml file should contain:
@@ -71,7 +71,7 @@ Feature: Test that WP-CLI loads.
       Hello
       """
 
-    When I try `wp scaffold Movefile --force`
+    When I try `wp scaffold movefile --force`
     Then the return code should be 0
     And the Movefile.yml file should exist
     And the Movefile.yml file should contain:
