@@ -1,7 +1,5 @@
 <?php
 
-use WP_CLI\Utils;
-
 /**
  * Generate a movefile.yml for Wordmove.
  *
@@ -89,28 +87,31 @@ class Scaffold_Movefile_Command extends WP_CLI_Command
 
 	/**
 	 * Initialize WP Filesystem
+	 *
+	 * @return \WP_Filesystem_Base
 	 */
 	private function init_wp_filesystem()
 	{
 		global $wp_filesystem;
+
 		WP_Filesystem();
+
 		return $wp_filesystem;
 	}
 
 	private function prompt_if_files_will_be_overwritten( $filename, $force )
 	{
-		$should_write_file = false;
 		if ( ! file_exists( $filename ) ) {
 			return true;
 		}
-		WP_CLI::warning( 'File already exists.' );
-		if ( $force ) {
-			$should_write_file = true;
-		} else {
-			$should_write_file = cli\confirm( 'Do you want to overwrite', false );
-		}
 
-		return $should_write_file;
+		WP_CLI::warning( 'File already exists.' );
+
+		if ( $force ) {
+			return true;
+		} else {
+			return cli\confirm( 'Do you want to overwrite', false );
+		}
 	}
 
 	/**
