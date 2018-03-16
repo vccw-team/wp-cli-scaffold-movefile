@@ -1,13 +1,15 @@
-# vccw/wp-cli-scaffold-movefile
+# vccw-team/wp-cli-scaffold-movefile
 
 [![Build Status](https://travis-ci.org/vccw-team/wp-cli-scaffold-movefile.svg?branch=master)](https://travis-ci.org/vccw-team/wp-cli-scaffold-movefile)
 
 Get informations as YAML format for [Wordmove's movefile.yml](http://welaika.github.io/wordmove/) from WordPress.
 
+**Note:** We changed the package name because the package index for package command is being deprecated. See [installing](#installing).
+
+
 ```
 $ wp scaffold movefile
 ```
-
 For more details:
 
 ```
