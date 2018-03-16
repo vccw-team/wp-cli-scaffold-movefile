@@ -4,7 +4,8 @@
 
 Get informations as YAML format for [Wordmove's movefile.yml](http://welaika.github.io/wordmove/) from WordPress.
 
-**Note:** We changed the package name because the package index for package command is being deprecated. See [installing](#installing).
+**Note:** We changed the package name because the package index for package command is being deprecated.
+See [installing](#installing).
 
 
 ```
