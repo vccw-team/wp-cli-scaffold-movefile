@@ -48,7 +48,7 @@ $ wp package install vccw-team/wp-cli-scaffold-movefile
 You can customize a default template of the movefile.yml.
 
 ```
-$ curl -o ~/.wp-cli/movefile.mustache https://github.com/vccw-team/wp-cli-scaffold-movefile/blob/master/templates/movefile.mustache
+$ curl -o ~/.wp-cli/movefile.mustache https://raw.githubusercontent.com/vccw-team/wp-cli-scaffold-movefile/master/src/templates/movefile.mustache
 ```
 
 Then edit `~/.wp-cli/movefile.mustache`.
